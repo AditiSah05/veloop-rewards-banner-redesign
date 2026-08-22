@@ -1,0 +1,23 @@
+.accent {
+  --accent: var(--gold-soft);
+  background: radial-gradient(120% 140% at 100% 0%, rgba(227, 181, 103, 0.14), transparent 55%),
+    linear-gradient(160deg, var(--surface) 0%, var(--surface-alt) 100%);
+}
+
+.giftNode {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+}
+
+.userNode {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #cfd6ff, #93b0ff);
+}
+
+.coinNode {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+}
