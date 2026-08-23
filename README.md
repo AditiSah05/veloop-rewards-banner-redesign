@@ -121,15 +121,8 @@ and content spacing tuned per breakpoint so nothing clips.
 All reward values (VEs, balances, referral amounts) are illustrative
 placeholders for development only — not approved reward figures.
 
-## Screenshots
-
-_Add desktop/tablet/mobile screenshots here before submission._
 
 ## Live Demo
 
-_Add Vercel/Netlify URL here after deployment._
-
-## GitHub Repository
-
-_Add repository URL here after pushing._
+https://veloop-rewards-banner-redesign.vercel.app/
 
