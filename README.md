@@ -8,8 +8,8 @@ Tasks**, and **Exchange Center**.
 
 Each banner communicates *what the feature is*, *why it matters*, *what you
 earn*, and *what to do next* — in a single glance — using a dark navy
-(`#161827`) surface, muted gold/blue/purple/teal accents, a large icon-based
-illustration, and one subtle motion cue. No neon, no gaming-style glow.
+(`#161827`) surface, a glowing blue/purple/gold 3D illustration, a two-tone
+gradient headline, dual CTAs, and a compact stat row.
 
 ## Banners
 
@@ -21,20 +21,24 @@ illustration, and one subtle motion cue. No neon, no gaming-style glow.
 | Captcha Tasks | Complete verification tasks for rewards | Teal |
 | Exchange Center | Redeem VEs for gift cards / payout options | Purple |
 
-Swap Center and Exchange Center are intentionally distinct: Swap is a
-same-platform currency conversion (circular swap icon, VE/SVE), Exchange is
-redemption into external rewards (wallet → gift cards).
+Swap Center and Exchange Center are intentionally distinct: Swap shows one VE
+coin converting into another (same-platform conversion), Exchange shows a VE
+coin turning into a burst of external gift cards (Amazon, Flipkart, Paytm,
+Google Play).
 
 ## Features
 
 - 100% width, responsive height (410–450px desktop, 380–540px tablet,
-  330–520px mobile) per banner
-- Large icon-composition illustration per banner, unique to its feature
-- Scroll-triggered entrance animation + floating reward icons + hover
-  elevation on every banner
+  330–520px mobile) per banner — verified with no content clipping at any
+  breakpoint
+- Large 3D illustration per banner (badge + gradient headline + description +
+  primary/secondary CTA, plus either a compact status pill or a 3–4 item
+  stat row depending on the banner's content)
+- Scroll-triggered entrance animation, illustration drift, hover elevation,
+  and per-CTA hover/active/focus states
 - Full keyboard/focus support, `aria-label`s on illustrations and CTAs
-- Shared, configurable `BannerShell` layout + per-banner illustration and
-  accent module — reusable architecture, unique visual identity
+- Shared, configurable `BannerShell` layout — one reusable shell, unique
+  accent/content per banner
 
 ## Technology Stack
 
@@ -61,36 +65,55 @@ npm run lint        # oxlint
 ```
 src/
 ├── components/
-│   ├── shared/            # BannerShell, Float, StatCard, Stage — reusable primitives
+│   ├── shared/
+│   │   ├── BannerShell.jsx        # layout: badge, heading, description,
+│   │   │                          # status pill, dual CTA, stat row
+│   │   └── IllustrationImage.jsx  # drift-animated WebP wrapper
 │   ├── ReferEarnBanner/
+│   │   ├── ReferEarnBanner.jsx
+│   │   └── ReferEarnBanner.module.css
 │   ├── SwapCenterBanner/
 │   ├── BonusVEsBanner/
 │   ├── CaptchaTasksBanner/
-│   └── ExchangeCenterBanner/
+│   └── ExchangeCenterBanner/      # (each folder mirrors ReferEarnBanner/)
+├── assets/illustrations/  # optimized WebP illustrations (~40-56KB each)
 ├── hooks/
 │   └── useInView.js       # IntersectionObserver hook for entrance animation
 ├── App.jsx                 # assembles all five banners (demo page)
 └── index.css                # design tokens (colors, radii) + global reset
 ```
 
-Each banner folder contains `index.jsx` (content + CTA copy), `Illustration.jsx`
-(icon composition), and a `.module.css` (accent gradient + node colors).
+Each banner is exactly two files: `<Banner>.jsx` (badge/heading/description/
+CTA copy, optional status pill, optional stat items, and the `<IllustrationImage>`
+using its own WebP asset) and `<Banner>.module.css` (an `.accent` class
+that sets CSS variables — `--accent`, `--heading-grad`, `--cta-grad`, `--glow`,
+`--illustration-basis`, etc. — consumed by the shared `BannerShell`). No
+banner imports another banner's files; the only shared dependencies are
+`components/shared/*`.
+
+## Illustrations
+
+Each banner's illustration is a cropped, resized, and WebP-compressed still
+from the feature's reference mockup, kept as the visual source of truth for
+the 3D coin/podium art style. Source mockups live in `image/` (git-ignored,
+reference only); the derived, submission-ready assets live in
+`src/assets/illustrations/`.
 
 ## Responsive Design
 
-Mobile stacks `illustration → heading → description → reward → CTA`. Tablet
-and desktop switch to a two-column row (illustration flips to the right on
-desktop ≥1024px). All breakpoints stay within the height ranges above via
-`min-height`/`max-height` per media query — never a fixed height.
+Mobile stacks `illustration → badge → heading → description → CTA → stats`.
+Tablet and desktop switch to a two-column row (illustration flips to the
+right on desktop ≥1024px). All breakpoints stay within the height ranges
+above via `min-height`/`max-height` per media query, with illustration size
+and content spacing tuned per breakpoint so nothing clips.
 
 ## Animation Details
 
 - **Entrance:** each banner fades/slides in once scrolled into view
   (`useInView`, `IntersectionObserver`, fires once).
-- **Illustration:** reward icons float with staggered delay/duration;
-  Swap Center's hub icon spins slowly; Bonus VEs' multiplier badge pulses.
-- **Interaction:** card elevates on hover, CTA arrow shifts right on hover,
-  CTA scales down on press, all via CSS transitions.
+- **Illustration:** gentle vertical drift (`IllustrationImage`).
+- **Interaction:** card elevates + glows on hover, CTA arrow shifts right on
+  hover, CTA scales down on press, all via CSS transitions.
 - Respects `prefers-reduced-motion`.
 
 ## Dummy Data
@@ -110,6 +133,3 @@ _Add Vercel/Netlify URL here after deployment._
 
 _Add repository URL here after pushing._
 
-## Author
-
-kryshan753@gmail.com

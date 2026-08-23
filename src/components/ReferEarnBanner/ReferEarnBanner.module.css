@@ -1,23 +1,11 @@
 .accent {
   --accent: var(--gold-soft);
-  background: radial-gradient(120% 140% at 100% 0%, rgba(227, 181, 103, 0.14), transparent 55%),
-    linear-gradient(160deg, var(--surface) 0%, var(--surface-alt) 100%);
-}
-
-.giftNode {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
-}
-
-.userNode {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, #cfd6ff, #93b0ff);
-}
-
-.coinNode {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  --accent-border: rgba(227, 181, 103, 0.35);
+  --accent-bg: rgba(227, 181, 103, 0.1);
+  --heading-grad: linear-gradient(90deg, var(--blue-glow), var(--purple-glow));
+  --cta-grad: linear-gradient(120deg, var(--gold-glow), var(--gold));
+  --cta-text: #241705;
+  --glow: rgba(227, 181, 103, 0.4);
+  --illustration-basis: 40%;
+  background: var(--bg);
 }

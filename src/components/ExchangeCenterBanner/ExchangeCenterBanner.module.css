@@ -1,22 +1,10 @@
 .accent {
   --accent: var(--purple);
-  background: radial-gradient(120% 140% at 100% 0%, rgba(155, 140, 240, 0.16), transparent 55%),
-    linear-gradient(160deg, var(--surface) 0%, var(--surface-alt) 100%);
-}
-
-.walletNode {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--purple), var(--blue));
-}
-
-.brandNode {
-  width: 58px;
-  height: 40px;
-  border-radius: 10px;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.16);
+  --accent-border: rgba(157, 92, 255, 0.35);
+  --accent-bg: rgba(157, 92, 255, 0.1);
+  --heading-grad: linear-gradient(90deg, var(--blue-glow), var(--purple-glow));
+  --cta-grad: linear-gradient(120deg, var(--blue-glow), var(--purple-glow));
+  --glow: rgba(157, 92, 255, 0.42);
+  --illustration-basis: 40%;
+  background: var(--bg);
 }

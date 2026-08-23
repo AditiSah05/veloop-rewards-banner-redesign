@@ -3,13 +3,20 @@ import { useInView } from "../../hooks/useInView";
 import styles from "./BannerShell.module.css";
 
 export default function BannerShell({
-  eyebrow,
+  badgeIcon,
+  badgeLabel,
   heading,
+  headingLead,
+  headingAccent,
   description,
-  rewardLabel,
-  rewardIcon,
+  noteIcon,
+  noteLabel,
   ctaLabel,
   onAction,
+  secondaryLabel,
+  secondaryIcon,
+  onSecondaryAction,
+  statItems,
   illustration,
   accentClass,
   ariaLabel,
@@ -25,26 +32,57 @@ export default function BannerShell({
       <div className={styles.illustration}>{illustration}</div>
 
       <div className={styles.content}>
-        <span className={styles.eyebrow}>{eyebrow}</span>
-        <h2 className={styles.heading}>{heading}</h2>
+        <span className={styles.badge}>
+          {badgeIcon}
+          {badgeLabel}
+        </span>
+
+        <h2 className={styles.heading}>
+          {heading || (
+            <>
+              {headingLead} <span className={styles.headingAccent}>{headingAccent}</span>
+            </>
+          )}
+        </h2>
+
         <p className={styles.description}>{description}</p>
 
-        {rewardLabel && (
-          <div className={styles.rewardPill}>
-            {rewardIcon}
-            <span>{rewardLabel}</span>
-          </div>
+        {noteLabel && (
+          <span className={styles.note}>
+            {noteIcon}
+            {noteLabel}
+          </span>
         )}
 
-        <button
-          type="button"
-          className={styles.cta}
-          onClick={onAction}
-          aria-label={ctaLabel}
-        >
-          <span>{ctaLabel}</span>
-          <ArrowRight size={18} className={styles.ctaArrow} aria-hidden="true" />
-        </button>
+        <div className={styles.ctaRow}>
+          <button type="button" className={styles.cta} onClick={onAction} aria-label={ctaLabel}>
+            <span>{ctaLabel}</span>
+            <ArrowRight size={18} className={styles.ctaArrow} aria-hidden="true" />
+          </button>
+
+          {secondaryLabel && (
+            <button
+              type="button"
+              className={styles.secondaryCta}
+              onClick={onSecondaryAction}
+              aria-label={secondaryLabel}
+            >
+              {secondaryIcon}
+              <span>{secondaryLabel}</span>
+            </button>
+          )}
+        </div>
+
+        {statItems && statItems.length > 0 && (
+          <ul className={styles.statRow}>
+            {statItems.map((item) => (
+              <li key={item.label} className={styles.statItem}>
+                {item.icon}
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

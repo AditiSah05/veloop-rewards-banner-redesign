@@ -13,6 +13,12 @@
   --purple: #9b8cf0;
   --teal: #6fd3c7;
 
+  /* vivid glow variants — same family, brighter, for illustration accents */
+  --blue-glow: #4d7dff;
+  --purple-glow: #9d5cff;
+  --gold-glow: #ffc861;
+  --teal-glow: #3fd6c4;
+
   --radius-lg: 22px;
   --radius-md: 14px;
   --radius-sm: 8px;

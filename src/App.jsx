@@ -1,8 +1,8 @@
-import ReferEarnBanner from "./components/ReferEarnBanner";
-import SwapCenterBanner from "./components/SwapCenterBanner";
-import BonusVEsBanner from "./components/BonusVEsBanner";
-import CaptchaTasksBanner from "./components/CaptchaTasksBanner";
-import ExchangeCenterBanner from "./components/ExchangeCenterBanner";
+import ReferEarnBanner from "./components/ReferEarnBanner/ReferEarnBanner";
+import SwapCenterBanner from "./components/SwapCenterBanner/SwapCenterBanner";
+import BonusVEsBanner from "./components/BonusVEsBanner/BonusVEsBanner";
+import CaptchaTasksBanner from "./components/CaptchaTasksBanner/CaptchaTasksBanner";
+import ExchangeCenterBanner from "./components/ExchangeCenterBanner/ExchangeCenterBanner";
 import styles from "./App.module.css";
 
 const ROUTES = {
@@ -27,11 +27,11 @@ function App() {
       </header>
 
       <div className="d-flex flex-column gap-4">
-        <ReferEarnBanner onAction={() => goTo(ROUTES.refer)} />
-        <SwapCenterBanner onAction={() => goTo(ROUTES.swap)} />
-        <BonusVEsBanner onAction={() => goTo(ROUTES.bonus)} />
-        <CaptchaTasksBanner onAction={() => goTo(ROUTES.captcha)} />
-        <ExchangeCenterBanner onAction={() => goTo(ROUTES.exchange)} />
+        <ReferEarnBanner onAction={() => goTo(ROUTES.refer)} onSecondaryAction={() => goTo(`${ROUTES.refer}/how-it-works`)} />
+        <SwapCenterBanner onAction={() => goTo(ROUTES.swap)} onSecondaryAction={() => goTo(`${ROUTES.swap}/how-it-works`)} />
+        <BonusVEsBanner onAction={() => goTo(ROUTES.bonus)} onSecondaryAction={() => goTo(`${ROUTES.bonus}/how-it-works`)} />
+        <CaptchaTasksBanner onAction={() => goTo(ROUTES.captcha)} onSecondaryAction={() => goTo(`${ROUTES.captcha}/rewards`)} />
+        <ExchangeCenterBanner onAction={() => goTo(ROUTES.exchange)} onSecondaryAction={() => goTo(`${ROUTES.exchange}/how-it-works`)} />
       </div>
     </main>
   );
