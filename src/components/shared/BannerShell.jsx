@@ -54,6 +54,17 @@ export default function BannerShell({
           </span>
         )}
 
+        {statItems && statItems.length > 0 && (
+          <ul className={styles.statRow}>
+            {statItems.map((item) => (
+              <li key={item.label} className={styles.statItem}>
+                {item.icon}
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
         <div className={styles.ctaRow}>
           <button type="button" className={styles.cta} onClick={onAction} aria-label={ctaLabel}>
             <span>{ctaLabel}</span>
@@ -72,17 +83,6 @@ export default function BannerShell({
             </button>
           )}
         </div>
-
-        {statItems && statItems.length > 0 && (
-          <ul className={styles.statRow}>
-            {statItems.map((item) => (
-              <li key={item.label} className={styles.statItem}>
-                {item.icon}
-                <span>{item.label}</span>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </section>
   );

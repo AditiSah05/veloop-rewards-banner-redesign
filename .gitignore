@@ -15,6 +15,7 @@ dist-ssr
 # Task reference material (not part of the deliverable)
 /image
 /docs
+/image-to-code-studio-main
 
 # Editor directories and files
 .vscode/*

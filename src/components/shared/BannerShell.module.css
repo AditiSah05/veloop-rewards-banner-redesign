@@ -67,7 +67,7 @@
 
 .heading {
   margin: 0;
-  font-size: clamp(21px, 4.6vw, 26px);
+  font-size: var(--heading-size, clamp(21px, 4.6vw, 26px));
   font-weight: 800;
   line-height: 1.16;
   color: var(--text);
@@ -82,7 +82,7 @@
 
 .description {
   margin: 0;
-  font-size: 13.5px;
+  font-size: var(--description-size, 13.5px);
   line-height: 1.42;
   color: var(--text-muted);
   max-width: 46ch;
@@ -248,11 +248,11 @@
   }
 
   .heading {
-    font-size: clamp(25px, 2.4vw, 32px);
+    font-size: var(--heading-size, clamp(25px, 2.4vw, 32px));
   }
 
   .description {
-    font-size: 15px;
+    font-size: var(--description-size, 15px);
     max-width: 42ch;
   }
 }

@@ -1,21 +1,123 @@
 .accent {
-  --accent: var(--gold-soft);
-  --accent-border: rgba(227, 181, 103, 0.35);
-  --accent-bg: rgba(227, 181, 103, 0.1);
-  --cta-grad: linear-gradient(120deg, var(--gold-glow), var(--gold));
+  --accent: oklch(0.85 0.17 88);
+  --accent-border: oklch(0.85 0.17 88 / 30%);
+  --accent-bg: oklch(0.85 0.17 88 / 8%);
+  --cta-grad: linear-gradient(120deg, oklch(0.85 0.17 88), oklch(0.76 0.16 78));
   --cta-text: #241705;
-  --glow: rgba(255, 200, 97, 0.45);
+  --glow: oklch(0.85 0.17 88 / 45%);
   --illustration-basis: 40%;
   background: var(--bg);
 }
 
 .gold {
-  color: var(--gold-soft);
-}
-
-.purple {
-  background: linear-gradient(90deg, var(--purple), var(--purple-glow));
+  background-image: linear-gradient(92deg, oklch(0.9 0.15 95) 0%, oklch(0.83 0.17 85) 55%, oklch(0.74 0.16 72) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.violet {
+  color: oklch(0.62 0.24 291);
+}
+
+.checkBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: oklch(0.85 0.17 88);
+  color: #241705;
+}
+
+.scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.balanceCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.coinIcon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px oklch(0.85 0.17 88 / 45%));
+}
+
+.balanceLabel {
+  margin: 0;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.balanceValue {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.balanceValue span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.chestImg {
+  width: 100%;
+  max-width: 220px;
+  max-height: 130px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.45));
+  animation: chestDrift 5s ease-in-out infinite;
+}
+
+@keyframes chestDrift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (min-width: 768px) {
+  .chestImg {
+    max-width: 280px;
+    max-height: 250px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .accent {
+    --heading-size: clamp(28px, 2.8vw, 38px);
+    --description-size: 15.5px;
+  }
+
+  .chestImg {
+    max-width: 320px;
+    max-height: 300px;
+  }
+
+  .coinIcon {
+    width: 44px;
+    height: 44px;
+  }
 }
