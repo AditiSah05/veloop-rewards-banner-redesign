@@ -14,8 +14,7 @@ const ROUTES = {
 };
 
 function goTo(route) {
-  // eslint-disable-next-line no-console
-  console.info(`Navigate → ${route}`);
+  window.location.assign(route);
 }
 
 function App() {
