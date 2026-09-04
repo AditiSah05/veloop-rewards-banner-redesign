@@ -1,43 +1,21 @@
-import { ArrowLeftRight, FileText, Zap, ShieldCheck, Coins, Crown } from "lucide-react";
+import { ArrowLeftRight, FileText, Zap, ShieldCheck, TrendingUp, History } from "lucide-react";
 import BannerShell from "../shared/BannerShell";
 import FeatureStrip from "../shared/FeatureStrip";
+import SwapScene from "./SwapScene";
 import styles from "./SwapCenterBanner.module.css";
 
 const STAT_ITEMS = [
-  { icon: <ArrowLeftRight size={14} aria-hidden="true" />, label: "Easy Swap" },
+  { icon: <ArrowLeftRight size={14} aria-hidden="true" />, label: "Instant Swap" },
+  { icon: <TrendingUp size={14} aria-hidden="true" />, label: "Live Rate" },
   { icon: <ShieldCheck size={14} aria-hidden="true" />, label: "Secure" },
-  { icon: <Coins size={14} aria-hidden="true" />, label: "In-Platform" },
 ];
 
 const FEATURE_ITEMS = [
   { icon: <Zap size={17} aria-hidden="true" />, title: "Swap Instantly", subtitle: "Convert your VEs in just a few clicks." },
-  { icon: <ArrowLeftRight size={17} aria-hidden="true" />, title: "VE ↔ SVE", subtitle: "Move between your in-platform currencies." },
-  { icon: <ShieldCheck size={17} aria-hidden="true" />, title: "Safe & Trusted", subtitle: "Secured platform for all your transactions." },
-  { icon: <Crown size={17} aria-hidden="true" />, title: "More Benefits", subtitle: "Better rewards, more happiness!" },
+  { icon: <TrendingUp size={17} aria-hidden="true" />, title: "Live Exchange Rate", subtitle: "Rates update in real time, always fair." },
+  { icon: <ShieldCheck size={17} aria-hidden="true" />, title: "Safe & Trusted", subtitle: "Every conversion is secured and tracked." },
+  { icon: <History size={17} aria-hidden="true" />, title: "Full Swap History", subtitle: "Review every conversion, anytime." },
 ];
-
-function SwapScene() {
-  return (
-    <div
-      className={styles.scene}
-      role="img"
-      aria-label="A VE coin converting to an SVE coin through an in-platform swap"
-    >
-      <div className={`${styles.token} ${styles.veToken}`}>
-        <span className={styles.tokenSymbol}>VE</span>
-        <span className={styles.tokenLabel}>Your VEs</span>
-      </div>
-      <div className={styles.swapMark} aria-hidden="true">
-        <ArrowLeftRight size={32} strokeWidth={1.8} />
-        <span>IN PLATFORM</span>
-      </div>
-      <div className={`${styles.token} ${styles.sveToken}`}>
-        <span className={styles.tokenSymbol}>SVE</span>
-        <span className={styles.tokenLabel}>Get SVEs</span>
-      </div>
-    </div>
-  );
-}
 
 export default function SwapCenterBanner({ onAction, onSecondaryAction }) {
   return (
@@ -47,9 +25,9 @@ export default function SwapCenterBanner({ onAction, onSecondaryAction }) {
         accentClass={styles.accent}
         badgeIcon={<ArrowLeftRight size={13} aria-hidden="true" />}
         badgeLabel="Swap Center"
-        headingLead="Swap VE ↔ SVE,"
-        headingAccent="Stay In Platform"
-        description="Convert your VEs to SVEs and move value across the VELOOP ecosystem."
+        headingLead="Swap VEs,"
+        headingAccent="Unlock SVEs"
+        description="Convert your VEs into SVEs instantly at a live rate and put them to work across VELOOP."
         statItems={STAT_ITEMS}
         ctaLabel="Go to Swap Center"
         onAction={onAction}
