@@ -25,9 +25,9 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid var(--accent-border, var(--border));
-  background: var(--accent-bg, rgba(255, 255, 255, 0.05));
-  color: var(--accent, var(--gold-soft));
+  border: 1px solid var(--item-accent, var(--accent-border, var(--border)));
+  background: color-mix(in srgb, var(--item-accent, var(--accent, var(--gold-soft))) 14%, var(--surface));
+  color: var(--item-accent, var(--accent, var(--gold-soft)));
 }
 
 .title {

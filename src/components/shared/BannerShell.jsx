@@ -57,9 +57,16 @@ export default function BannerShell({
         {statItems && statItems.length > 0 && (
           <ul className={styles.statRow}>
             {statItems.map((item) => (
-              <li key={item.label} className={styles.statItem}>
-                {item.icon}
-                <span>{item.label}</span>
+              <li
+                key={item.label}
+                className={styles.statItem}
+                style={item.color ? { "--item-accent": item.color } : undefined}
+              >
+                <span className={styles.statIcon}>{item.icon}</span>
+                <span className={styles.statText}>
+                  <span className={styles.statLabel}>{item.label}</span>
+                  {item.subtitle && <span className={styles.statSubtitle}>{item.subtitle}</span>}
+                </span>
               </li>
             ))}
           </ul>

@@ -1,8 +1,7 @@
-import { ShieldCheck, Gift, Zap, Coins, Trophy } from "lucide-react";
-import BannerShell from "../shared/BannerShell";
+import { ShieldCheck, Gift, ArrowRight, Zap, Coins, Trophy } from "lucide-react";
+import { useInView } from "../../hooks/useInView";
 import IllustrationImage from "../shared/IllustrationImage";
-import FeatureStrip from "../shared/FeatureStrip";
-import captchaTasksImg from "../../assets/illustrations/captcha-tasks.webp";
+import captchaTasksImg from "../../assets/illustrations/captcha-tasks-new.webp";
 import styles from "./CaptchaTasksBanner.module.css";
 
 const STAT_ITEMS = [
@@ -12,42 +11,82 @@ const STAT_ITEMS = [
 ];
 
 const FEATURE_ITEMS = [
-  { icon: <ShieldCheck size={17} aria-hidden="true" />, title: "100% Human Tasks", subtitle: "Real captcha tasks completed by you." },
-  { icon: <Coins size={17} aria-hidden="true" />, title: "Earn VEs", subtitle: "Get rewarded for every captcha you solve." },
-  { icon: <Zap size={17} aria-hidden="true" />, title: "No Time Limit", subtitle: "Solve at your own pace, anytime, anywhere." },
-  { icon: <ShieldCheck size={17} aria-hidden="true" />, title: "Safe & Trusted", subtitle: "Secure tasks for a better and safer experience." },
-  { icon: <Trophy size={17} aria-hidden="true" />, title: "More Tasks, More Rewards", subtitle: "Keep solving and unlock exciting bonuses!" },
+  { icon: <ShieldCheck size={19} aria-hidden="true" />, title: "100% Human Tasks", subtitle: "Real captcha tasks completed by you." },
+  { icon: <Coins size={19} aria-hidden="true" />, title: "Earn VEs", subtitle: "Get rewarded for every captcha you solve." },
+  { icon: <Zap size={19} aria-hidden="true" />, title: "No Time Limit", subtitle: "Solve at your own pace, anytime, anywhere." },
+  { icon: <ShieldCheck size={19} aria-hidden="true" />, title: "Safe & Trusted", subtitle: "Secure tasks for a better and safer experience." },
+  { icon: <Trophy size={19} aria-hidden="true" />, title: "More Tasks, More Rewards", subtitle: "Keep solving and unlock exciting bonuses!" },
 ];
 
 export default function CaptchaTasksBanner({ onAction, onSecondaryAction }) {
+  const [ref, inView] = useInView();
+
   return (
-    <div className="d-flex flex-column gap-3">
-      <BannerShell
-        ariaLabel="Captcha tasks banner"
-        accentClass={styles.accent}
-        badgeIcon={<ShieldCheck size={13} aria-hidden="true" />}
-        badgeLabel="Captcha Tasks"
-        headingLead="Complete Captcha,"
-        headingAccent="Earn Rewards"
-        description="Solve captcha tasks, help secure the platform and earn VEs instantly."
-        statItems={STAT_ITEMS}
-        ctaLabel="Start Solving Now"
-        onAction={onAction}
-        secondaryLabel="View Rewards"
-        secondaryIcon={<Gift size={16} aria-hidden="true" />}
-        onSecondaryAction={onSecondaryAction}
-        illustration={
+    <section
+      ref={ref}
+      className={`${styles.banner} ${inView ? styles.inView : ""}`}
+      aria-label="Captcha tasks banner"
+    >
+      <div className={styles.top}>
+        <div className={styles.content}>
+          <span className={styles.badge}>
+            <ShieldCheck size={13} aria-hidden="true" />
+            Captcha Tasks
+          </span>
+
+          <h2 className={styles.heading}>
+            Complete Captcha, <span className={styles.headingAccent}>Earn Rewards</span>
+          </h2>
+
+          <p className={styles.description}>
+            Solve captcha tasks, help secure the platform and earn VEs instantly.
+          </p>
+
+          <ul className={styles.statRow}>
+            {STAT_ITEMS.map((item) => (
+              <li key={item.label} className={styles.statItem}>
+                {item.icon}
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className={styles.ctaRow}>
+            <button type="button" className={styles.cta} onClick={onAction} aria-label="Start Solving Now">
+              <span>Start Solving Now</span>
+              <ArrowRight size={18} className={styles.ctaArrow} aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className={styles.secondaryCta}
+              onClick={onSecondaryAction}
+              aria-label="View Rewards"
+            >
+              <Gift size={16} aria-hidden="true" />
+              <span>View Rewards</span>
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.illustration}>
           <IllustrationImage
             src={captchaTasksImg}
             alt="A captcha verification screen with a Verify and Earn button, secured by a shield checkmark and a lock, surrounded by VE coins"
           />
-        }
-      />
-      <FeatureStrip
-        items={FEATURE_ITEMS}
-        accentClass={styles.accent}
-        ariaLabel="Why solve captcha tasks on VELOOP"
-      />
-    </div>
+        </div>
+      </div>
+
+      <ul className={styles.featureRow} aria-label="Why solve captcha tasks on VELOOP">
+        {FEATURE_ITEMS.map((item) => (
+          <li key={item.title} className={styles.featureItem}>
+            <span className={styles.featureIcon}>{item.icon}</span>
+            <div>
+              <p className={styles.featureTitle}>{item.title}</p>
+              <p className={styles.featureSubtitle}>{item.subtitle}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

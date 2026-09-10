@@ -1,8 +1,7 @@
-import { Repeat, FileText, ShieldCheck, Gift, Zap, Trophy, Star } from "lucide-react";
-import BannerShell from "../shared/BannerShell";
+import { Repeat, FileText, ArrowRight, ShieldCheck, Gift, Zap, Trophy, Star } from "lucide-react";
+import { useInView } from "../../hooks/useInView";
 import IllustrationImage from "../shared/IllustrationImage";
-import FeatureStrip from "../shared/FeatureStrip";
-import exchangeCenterImg from "../../assets/illustrations/exchange-center.webp";
+import exchangeCenterImg from "../../assets/illustrations/exchange-center-new.webp";
 import styles from "./ExchangeCenterBanner.module.css";
 
 const STAT_ITEMS = [
@@ -12,42 +11,82 @@ const STAT_ITEMS = [
 ];
 
 const FEATURE_ITEMS = [
-  { icon: <Repeat size={17} aria-hidden="true" />, title: "Flexible Exchange", subtitle: "Wide range of options to match your needs." },
-  { icon: <Zap size={17} aria-hidden="true" />, title: "Instant Processing", subtitle: "Quick exchange and faster rewards." },
-  { icon: <ShieldCheck size={17} aria-hidden="true" />, title: "100% Secure", subtitle: "Protected transactions with full security." },
-  { icon: <Trophy size={17} aria-hidden="true" />, title: "More Value", subtitle: "Get the best value for your VEs." },
-  { icon: <Star size={17} aria-hidden="true" />, title: "Better Experience", subtitle: "Smooth, easy and rewarding journey." },
+  { icon: <Repeat size={19} aria-hidden="true" />, title: "Flexible Exchange", subtitle: "Wide range of options to match your needs." },
+  { icon: <Zap size={19} aria-hidden="true" />, title: "Instant Processing", subtitle: "Quick exchange and faster rewards." },
+  { icon: <ShieldCheck size={19} aria-hidden="true" />, title: "100% Secure", subtitle: "Protected transactions with full security." },
+  { icon: <Trophy size={19} aria-hidden="true" />, title: "More Value", subtitle: "Get the best value for your VEs." },
+  { icon: <Star size={19} aria-hidden="true" />, title: "Better Experience", subtitle: "Smooth, easy and rewarding journey." },
 ];
 
 export default function ExchangeCenterBanner({ onAction, onSecondaryAction }) {
+  const [ref, inView] = useInView();
+
   return (
-    <div className="d-flex flex-column gap-3">
-      <BannerShell
-        ariaLabel="Exchange center rewards redemption banner"
-        accentClass={styles.accent}
-        badgeIcon={<Repeat size={13} aria-hidden="true" />}
-        badgeLabel="Exchange Center"
-        headingLead="Exchange Your VEs,"
-        headingAccent="Unlock More Rewards!"
-        description="Use your VEs to exchange for amazing vouchers, crypto, gift cards and much more."
-        statItems={STAT_ITEMS}
-        ctaLabel="Go to Exchange Center"
-        onAction={onAction}
-        secondaryLabel="How It Works"
-        secondaryIcon={<FileText size={16} aria-hidden="true" />}
-        onSecondaryAction={onSecondaryAction}
-        illustration={
+    <section
+      ref={ref}
+      className={`${styles.banner} ${inView ? styles.inView : ""}`}
+      aria-label="Exchange center rewards redemption banner"
+    >
+      <div className={styles.top}>
+        <div className={styles.content}>
+          <span className={styles.badge}>
+            <Repeat size={13} aria-hidden="true" />
+            Exchange Center
+          </span>
+
+          <h2 className={styles.heading}>
+            Exchange Your VEs, <span className={styles.headingAccent}>Unlock More Rewards!</span>
+          </h2>
+
+          <p className={styles.description}>
+            Use your VEs to exchange for amazing vouchers, crypto, gift cards and much more.
+          </p>
+
+          <ul className={styles.statRow}>
+            {STAT_ITEMS.map((item) => (
+              <li key={item.label} className={styles.statItem}>
+                {item.icon}
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className={styles.ctaRow}>
+            <button type="button" className={styles.cta} onClick={onAction} aria-label="Go to Exchange Center">
+              <span>Go to Exchange Center</span>
+              <ArrowRight size={18} className={styles.ctaArrow} aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className={styles.secondaryCta}
+              onClick={onSecondaryAction}
+              aria-label="How It Works"
+            >
+              <FileText size={16} aria-hidden="true" />
+              <span>How It Works</span>
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.illustration}>
           <IllustrationImage
             src={exchangeCenterImg}
             alt="A VEs coin exchanging into a treasure chest bursting with Amazon, Flipkart, Paytm and Google Play reward cards"
           />
-        }
-      />
-      <FeatureStrip
-        items={FEATURE_ITEMS}
-        accentClass={styles.accent}
-        ariaLabel="Why exchange VEs on VELOOP"
-      />
-    </div>
+        </div>
+      </div>
+
+      <ul className={styles.featureRow} aria-label="Why exchange VEs on VELOOP">
+        {FEATURE_ITEMS.map((item) => (
+          <li key={item.title} className={styles.featureItem}>
+            <span className={styles.featureIcon}>{item.icon}</span>
+            <div>
+              <p className={styles.featureTitle}>{item.title}</p>
+              <p className={styles.featureSubtitle}>{item.subtitle}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
